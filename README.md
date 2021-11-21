@@ -20,12 +20,12 @@ The above images present the observed temperature data in Oahu for the months of
 ## Summary
 In summary, though the temperatures are a bit lower and more variable in December than they are in June, there should still be ample days to move volume in both the dairy and surfboard rentral markets. 
 
-Additional analysis that could be performed to bolster the decision-making would be to calculate the number of days in both June and December with precipitation. Days with precipitation above a certain threshold could possibly be detrimental to business.
+- Additional analysis that could be performed to bolster the decision-making would be to calculate the number of days in both June and December with precipitation. Days with precipitation above a certain threshold could possibly be detrimental to business.
 ```
 results = session.query(Measurement.date, Measurement.prcp).filter(extract('month', Measurement.date) == 6).all()
 dec_results = session.query(Measurement.date, Measurement.prcp).filter(extract('month', Measurement.date) == 12).all()
 ```
-Furthermore, some visual representation of the data that expands upon the number of days with preciptiation would be helpful to describe the days where business may be, ahem, _dampened_ by the presence of rain. 
+- Furthermore, some visual representation of the data that expands upon the number of days with preciptiation would be helpful to describe the days where business may be, ahem, _dampened_ by the presence of rain. 
 ```
 # Save the query results as a Pandas DataFrame and set the index to the date column
 precip_df = pd.DataFrame(results, columns=['date','precipitation'])
@@ -36,7 +36,7 @@ precip_df = df.sort_index()
 # Use Pandas Plotting with Matplotlib to plot the data
 precip_df.plot()
 ```
-Finally, visualization could be applied to the temperature dataframe as well for each month presented as a histogram to better understand the distribution of temperatures as they apply to optimal ice cream/surfing weather.
+- Finally, visualization could be applied to the temperature dataframe as well for each month presented as a histogram to better understand the distribution of temperatures as they apply to optimal ice cream/surfing weather.
 ```
 temps_df.plot.hist(bins=12)
 plt.tight_layout()
