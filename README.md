@@ -36,3 +36,8 @@ precip_df = df.sort_index()
 # Use Pandas Plotting with Matplotlib to plot the data
 precip_df.plot()
 ```
+Finally, visualization could be applied to the temperature dataframe as well for each month presented as a histogram to better understand the distribution of temperatures as they apply to optimal ice cream/surfing weather.
+```
+temps_df.plot.hist(bins=12)
+plt.tight_layout()
+```
