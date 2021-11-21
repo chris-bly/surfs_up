@@ -18,3 +18,21 @@ The above images present the observed temperature data in Oahu for the months of
 - Most important to the ice cream business, a look at the mimimum observed temperatures indicates an obversved gap of 8 degrees between June (64 degrees) and December (56 degrees). This, coupled with the lower quartile data showing that 25% of days only reach 69 degrees in December vs. 73 degrees in June indicate that there are certainly going to be days where ice cream isn't a highly sought-after treat. It may be a good idea to ensure the surf shack has a well-stocked inventory of wetsuits and cooler weather surfing accessories as well.
 
 ## Summary
+In summary, though the temperatures are a bit lower and more variable in December than they are in June, there should still be ample days to move volume in both the dairy and surfboard rentral markets. 
+
+Additional analysis that could be performed to bolster the decision-making would be to calculate the number of days in both June and December with precipitation. Days with precipitation above a certain threshold could possibly be detrimental to business.
+```
+results = session.query(Measurement.date, Measurement.prcp).filter(extract('month', Measurement.date) == 6).all()
+dec_results = session.query(Measurement.date, Measurement.prcp).filter(extract('month', Measurement.date) == 12).all()
+```
+Furthermore, some visual representation of the data that expands upon the number of days with preciptiation would be helpful to describe the days where business may be, ahem, _dampened_ by the presence of rain. 
+```
+# Save the query results as a Pandas DataFrame and set the index to the date column
+precip_df = pd.DataFrame(results, columns=['date','precipitation'])
+precip_df.set_index(df['date'], inplace=True)
+
+# Sort the dataframe by date
+precip_df = df.sort_index()
+# Use Pandas Plotting with Matplotlib to plot the data
+precip_df.plot()
+```
